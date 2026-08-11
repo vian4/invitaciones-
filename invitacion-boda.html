@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentina & Rodrigo — Nos casamos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Parisienne&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F1E4;
+    --paper-2:#F1E8D6;
+    --ink:#2B2A24;
+    --ink-soft:#5B584C;
+    --forest:#33422E;
+    --forest-deep:#212B1D;
+    --rose:#C48B93;
+    --gold:#B08D57;
+    --terracotta:#A85C3E;
+    --line: rgba(43,42,36,0.15);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  .display{font-family:'Cormorant Garamond', serif;}
+  .script{font-family:'Parisienne', cursive;}
+
+  /* ---------- Papel picado scalloped divider ---------- */
+  .scallop{
+    width:100%;
+    height:22px;
+    display:block;
+  }
+  .scallop-top{ transform: rotate(180deg); }
+
+  /* ---------- Sections ---------- */
+  section{
+    position:relative;
+    padding:80px 24px;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .section-forest{
+    background:var(--forest);
+    color:var(--paper);
+    max-width:100%;
+  }
+  .section-forest .inner{ max-width:640px; margin:0 auto; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:48px 24px;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(176,141,87,0.10), transparent 60%),
+      var(--paper);
+    position:relative;
+  }
+  .hero .eyebrow{
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    font-size:11px;
+    color:var(--forest);
+    font-weight:500;
+    margin-bottom:28px;
+  }
+  .hero .names{
+    font-family:'Parisienne', cursive;
+    font-size:clamp(48px, 13vw, 84px);
+    line-height:1.1;
+    color:var(--forest-deep);
+    margin:0;
+  }
+  .hero .amp{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:clamp(22px, 5vw, 30px);
+    color:var(--terracotta);
+    margin:6px 0;
+  }
+  .hero .date-line{
+    margin-top:32px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(20px, 4.2vw, 26px);
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+  }
+  .hero .date-line strong{ color:var(--forest); font-weight:600; }
+  .hero .scroll-cue{
+    position:absolute;
+    bottom:28px;
+    font-size:10px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    opacity:0.7;
+  }
+
+  /* ---------- Countdown ---------- */
+  .countdown-wrap{ text-align:center; }
+  .countdown-label{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--paper-2);
+    margin-bottom:28px;
+  }
+  .countdown{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .cd-card{
+    background:var(--paper);
+    color:var(--forest-deep);
+    width:74px;
+    padding:16px 0 12px;
+    position:relative;
+    clip-path: polygon(
+      0% 6px, 6px 0%, calc(100% - 6px) 0%, 100% 6px,
+      100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0% calc(100% - 6px)
+    );
+  }
+  .cd-num{
+    font-family:'Cormorant Garamond', serif;
+    font-size:32px;
+    font-weight:600;
+    line-height:1;
+  }
+  .cd-unit{
+    font-size:9px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:6px;
+    display:block;
+  }
+
+  /* ---------- Itinerary ---------- */
+  h2.section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:34px;
+    text-align:center;
+    color:var(--forest-deep);
+    margin:0 0 44px;
+  }
+  .section-forest h2.section-title{ color:var(--paper); }
+
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .tl-item{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:18px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .tl-item:last-child{ border-bottom:none; }
+  .tl-time{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:19px;
+    color:var(--terracotta);
+    padding-top:2px;
+  }
+  .tl-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:21px;
+    font-weight:600;
+    color:var(--forest-deep);
+    margin:0 0 4px;
+  }
+  .tl-desc{
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0;
+  }
+
+  /* ---------- Venue cards ---------- */
+  .venues{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .venue-card{
+    background:var(--paper-2);
+    padding:26px 24px;
+    text-align:center;
+    border:1px solid var(--line);
+  }
+  .venue-card .v-label{
+    font-size:10px;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    font-weight:500;
+  }
+  .venue-card .v-name{
+    font-family:'Cormorant Garamond', serif;
+    font-size:24px;
+    font-weight:600;
+    color:var(--forest-deep);
+    margin:8px 0 4px;
+  }
+  .venue-card .v-addr{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+    line-height:1.5;
+  }
+  .btn-outline{
+    display:inline-block;
+    padding:10px 22px;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--forest-deep);
+    border:1px solid var(--forest-deep);
+    text-decoration:none;
+    transition:all .2s ease;
+  }
+  .btn-outline:hover{ background:var(--forest-deep); color:var(--paper); }
+
+  /* ---------- Dress code ---------- */
+  .dress{ text-align:center; }
+  .swatches{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:20px 0 18px;
+  }
+  .swatch{
+    width:26px; height:26px; border-radius:50%;
+    border:2px solid rgba(255,255,255,0.6);
+  }
+
+  /* ---------- RSVP ---------- */
+  .rsvp-box{
+    background:var(--paper);
+    color:var(--ink);
+    padding:36px 26px;
+    border:1px solid var(--line);
+  }
+  .field{ margin-bottom:16px; }
+  .field label{
+    display:block;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .field input, .field select, .field textarea{
+    width:100%;
+    padding:11px 12px;
+    font-family:'Jost', sans-serif;
+    font-size:14px;
+    border:1px solid var(--line);
+    background:var(--paper-2);
+    color:var(--ink);
+  }
+  .field textarea{ resize:vertical; min-height:70px; }
+  .rsvp-submit{
+    width:100%;
+    padding:14px;
+    background:var(--terracotta);
+    color:var(--paper);
+    border:none;
+    font-family:'Jost', sans-serif;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    cursor:pointer;
+    margin-top:6px;
+    transition:opacity .2s ease;
+  }
+  .rsvp-submit:hover{ opacity:0.88; }
+
+  /* ---------- Footer ---------- */
+  .footer{
+    text-align:center;
+    padding:56px 24px 44px;
+  }
+  .footer .script{
+    font-size:30px;
+    color:var(--forest);
+  }
+  .footer .small{
+    font-size:11px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="eyebrow">Nos casamos</div>
+  <h1 class="names">Valentina<span class="amp">&amp;</span>Rodrigo</h1>
+  <div class="date-line">Sábado <strong>14 de Marzo, 2026</strong> · Querétaro, Qro.</div>
+  <div class="scroll-cue">Desliza ↓</div>
+</section>
+
+<svg class="scallop" viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0,0 Q10,20 20,0 T40,0 T60,0 T80,0 T100,0 T120,0 T140,0 T160,0 T180,0 T200,0 T220,0 T240,0 T260,0 T280,0 T300,0 T320,0 T340,0 T360,0 T380,0 T400,0 L400,20 L0,20 Z" fill="#33422E"/></svg>
+
+<!-- ============ COUNTDOWN ============ -->
+<section class="section-forest">
+  <div class="inner countdown-wrap">
+    <div class="countdown-label">Faltan solo...</div>
+    <div class="countdown" id="countdown">
+      <div class="cd-card"><span class="cd-num" id="cd-days">--</span><span class="cd-unit">Días</span></div>
+      <div class="cd-card"><span class="cd-num" id="cd-hours">--</span><span class="cd-unit">Horas</span></div>
+      <div class="cd-card"><span class="cd-num" id="cd-mins">--</span><span class="cd-unit">Min</span></div>
+      <div class="cd-card"><span class="cd-num" id="cd-secs">--</span><span class="cd-unit">Seg</span></div>
+    </div>
+  </div>
+</section>
+
+<svg class="scallop scallop-top" viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0,0 Q10,20 20,0 T40,0 T60,0 T80,0 T100,0 T120,0 T140,0 T160,0 T180,0 T200,0 T220,0 T240,0 T260,0 T280,0 T300,0 T320,0 T340,0 T360,0 T380,0 T400,0 L400,20 L0,20 Z" fill="#33422E"/></svg>
+
+<!-- ============ ITINERARIO ============ -->
+<section>
+  <h2 class="section-title">El Día</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">4:00 PM</div>
+      <div>
+        <p class="tl-title">Ceremonia religiosa</p>
+        <p class="tl-desc">Parroquia de Santa Rosa de Viterbo. Te pedimos llegar 20 minutos antes.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">6:30 PM</div>
+      <div>
+        <p class="tl-title">Cóctel de bienvenida</p>
+        <p class="tl-desc">Jardín principal de la hacienda. Habrá barra libre y música en vivo.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">8:00 PM</div>
+      <div>
+        <p class="tl-title">Recepción y cena</p>
+        <p class="tl-desc">Salón principal. Brindis, primer baile y a celebrar hasta que el cuerpo aguante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VENUES ============ -->
+<section style="max-width:100%; background:var(--paper-2); padding-top:70px; padding-bottom:70px;">
+  <div class="inner" style="max-width:640px; margin:0 auto; padding:0 24px;">
+    <h2 class="section-title">Ubicaciones</h2>
+    <div class="venues">
+      <div class="venue-card">
+        <div class="v-label">Ceremonia</div>
+        <div class="v-name">Parroquia de Santa Rosa</div>
+        <p class="v-addr">Calle Ignacio Allende Sur 14, Centro, Querétaro</p>
+        <a class="btn-outline" href="https://maps.google.com" target="_blank" rel="noopener">Ver mapa</a>
+      </div>
+      <div class="venue-card">
+        <div class="v-label">Recepción</div>
+        <div class="v-name">Hacienda El Rosario</div>
+        <p class="v-addr">Carretera a San Miguelito Km 8, Querétaro</p>
+        <a class="btn-outline" href="https://maps.google.com" target="_blank" rel="noopener">Ver mapa</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DRESS CODE ============ -->
+<section class="section-forest">
+  <div class="inner dress">
+    <h2 class="section-title">Código de Vestimenta</h2>
+    <p style="font-size:15px; color:var(--paper-2); line-height:1.6; margin:0 0 4px;">Formal · Evitar blanco y tonos tierra claros</p>
+    <div class="swatches">
+      <span class="swatch" style="background:#33422E"></span>
+      <span class="swatch" style="background:#A85C3E"></span>
+      <span class="swatch" style="background:#B08D57"></span>
+      <span class="swatch" style="background:#C48B93"></span>
+      <span class="swatch" style="background:#2B2A24"></span>
+    </div>
+  </div>
+</section>
+
+<svg class="scallop scallop-top" viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0,0 Q10,20 20,0 T40,0 T60,0 T80,0 T100,0 T120,0 T140,0 T160,0 T180,0 T200,0 T220,0 T240,0 T260,0 T280,0 T300,0 T320,0 T340,0 T360,0 T380,0 T400,0 L400,20 L0,20 Z" fill="#33422E"/></svg>
+
+<!-- ============ RSVP ============ -->
+<section>
+  <h2 class="section-title">Confirma tu Asistencia</h2>
+  <div class="rsvp-box">
+    <div class="field">
+      <label for="r-name">Nombre completo</label>
+      <input type="text" id="r-name" placeholder="Tu nombre">
+    </div>
+    <div class="field">
+      <label for="r-count">Número de invitados</label>
+      <select id="r-count">
+        <option>1 persona</option>
+        <option>2 personas</option>
+        <option>3 personas</option>
+        <option>4 personas</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="r-attend">¿Asistirás?</label>
+      <select id="r-attend">
+        <option>Sí, ahí estaré</option>
+        <option>No podré asistir</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="r-msg">Mensaje para los novios (opcional)</label>
+      <textarea id="r-msg" placeholder="Escribe tu mensaje..."></textarea>
+    </div>
+    <button class="rsvp-submit" onclick="enviarRSVP()">Confirmar asistencia</button>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<div class="footer">
+  <div class="script">Con amor,</div>
+  <div class="script" style="font-size:22px; margin-top:2px;">Valentina &amp; Rodrigo</div>
+  <div class="small">14 · 03 · 2026</div>
+</div>
+
+<script>
+  // ---- Countdown ----
+  // FECHA DE LA BODA: cambiar aquí para cada cliente
+  const weddingDate = new Date('2026-03-14T16:00:00-06:00').getTime();
+
+  function updateCountdown(){
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+    if(diff <= 0){
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '0';
+      document.getElementById('cd-mins').textContent = '0';
+      document.getElementById('cd-secs').textContent = '0';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = hours;
+    document.getElementById('cd-mins').textContent = mins;
+    document.getElementById('cd-secs').textContent = secs;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ---- RSVP -> envía por WhatsApp (sin necesidad de backend) ----
+  function enviarRSVP(){
+    const name = document.getElementById('r-name').value || 'Sin nombre';
+    const count = document.getElementById('r-count').value;
+    const attend = document.getElementById('r-attend').value;
+    const msg = document.getElementById('r-msg').value;
+
+    // NÚMERO DE WHATSAPP: cambiar por el número de cada pareja/cliente
+    const phone = '5215500000000';
+
+    const text = `Confirmación de asistencia:%0A` +
+                 `Nombre: ${name}%0A` +
+                 `Asistentes: ${count}%0A` +
+                 `¿Asiste?: ${attend}%0A` +
+                 `Mensaje: ${msg || '(sin mensaje)'}`;
+
+    window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+  }
+</script>
+
+</body>
+</html>
